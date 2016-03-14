@@ -4,7 +4,7 @@ rvm:
   - 1.9.3
 branches:
   only:
-    - testing
+    - master
 env:
   - REDMINE_VERSION=2.4.2.stable VERBOSE=yes
 script:
