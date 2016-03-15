@@ -94,16 +94,9 @@ run_install() {
 
   cp $PATH_TO_PLUGINS/$PLUGIN/.travis-database.yml config/database.yml
 
-  # add codecov
-  echo "gem 'simplecov', :require => false" >> $BUNDLE_GEMFILE
-  echo "gem 'simplecov-rcov', :require => false" >> $BUNDLE_GEMFILE
-  echo "gem 'codecov'" >> $BUNDLE_GEMFILE
-
   # install gems
   mkdir -p vendor/bundle
   bundle install --path vendor/bundle
-  
-  bundle list
   
   bundle exec rake db:migrate $TRACE
   bundle exec rake redmine:load_default_data REDMINE_LANG=en $TRACE
