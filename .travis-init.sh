@@ -95,8 +95,10 @@ run_install() {
   cp $PATH_TO_PLUGINS/$PLUGIN/.travis-database.yml config/database.yml
 
   # add codecov
-  cat $BUNDLE_GEMFILE
+  echo "gem 'simplecov', :require => false" >> $BUNDLE_GEMFILE
+  echo "gem 'simplecov-rcov', :require => false" >> $BUNDLE_GEMFILE
   echo "gem 'codecov'" >> $BUNDLE_GEMFILE
+  cat $BUNDLE_GEMFILE
 
   # install gems
   mkdir -p vendor/bundle
