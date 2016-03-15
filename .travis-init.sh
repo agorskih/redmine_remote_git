@@ -95,8 +95,8 @@ run_install() {
   cp $PATH_TO_PLUGINS/$PLUGIN/.travis-database.yml config/database.yml
 
   # add codecov
-  cat BUNDLE_GEMFILE
-  echo "gem 'codecov'" >> BUNDLE_GEMFILE
+  cat $BUNDLE_GEMFILE
+  echo "gem 'codecov'" >> $BUNDLE_GEMFILE
 
   # install gems
   mkdir -p vendor/bundle
