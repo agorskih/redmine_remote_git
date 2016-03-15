@@ -97,6 +97,8 @@ run_install() {
   # add codecov
   echo "gem 'codecov', :require => true, :group => :test" >> BUNDLE_GEMFILE
   echo "gem 'simplecov', :require => true, :group => :test" >> BUNDLE_GEMFILE
+  gem install simplecov
+  gem install codecov
 
   # install gems
   mkdir -p vendor/bundle
