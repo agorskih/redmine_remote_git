@@ -98,7 +98,6 @@ run_install() {
   echo "gem 'simplecov', :require => false" >> $BUNDLE_GEMFILE
   echo "gem 'simplecov-rcov', :require => false" >> $BUNDLE_GEMFILE
   echo "gem 'codecov'" >> $BUNDLE_GEMFILE
-  cat $BUNDLE_GEMFILE
 
   # install gems
   mkdir -p vendor/bundle

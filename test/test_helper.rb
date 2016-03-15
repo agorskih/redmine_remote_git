@@ -1,5 +1,6 @@
 # Load codecov helper
 require 'simplecov'
+require 'simplecov-rcov'
 SimpleCov.start
 if ENV['CI']=='true'
   require 'codecov'
