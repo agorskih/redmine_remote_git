@@ -94,6 +94,9 @@ run_install() {
 
   cp $PATH_TO_PLUGINS/$PLUGIN/.travis-database.yml config/database.yml
 
+  # add coveralls
+  echo "gem 'coveralls', require: false" >> $BUNDLE_GEMFILE
+
   # install gems
   mkdir -p vendor/bundle
   bundle install --path vendor/bundle

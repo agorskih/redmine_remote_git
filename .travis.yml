@@ -5,7 +5,7 @@ branches:
   only:
     - master
 env:
-  - REDMINE_VERSION=2.3.3 VERBOSE=yes CODECOV_TOKEN=afbfbb99-5029-45bc-835a-cf39c122d13c
+  - REDMINE_VERSION=2.3.3 VERBOSE=yes
 script:
   - export PLUGIN=redmine_remote_git
   - export WORKSPACE=$(pwd)/workspace
