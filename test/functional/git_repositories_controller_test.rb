@@ -12,7 +12,6 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_repositories_initialized_correctly
   	get :index
 
-  	assert_equal :repositories.count, 0
   	repo = :repositories.first
   	assert_equal repo.id, 1
   	assert_equal repo.remote_origin_url, "https://github.com/gordev/redmine_remote_git.git"
