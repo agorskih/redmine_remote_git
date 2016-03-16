@@ -1,6 +1,4 @@
-unless ENV['TRAVIS'].nil? 
-	require File.expand_path('../../test_helper', __FILE__)
-end
+require File.expand_path('../../test_helper', __FILE__)
 
 class GitRepositoriesControllerTest < ActionController::TestCase
   def test_index
