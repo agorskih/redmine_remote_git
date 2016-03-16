@@ -10,12 +10,14 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   end
 
   def test_repositories_initialized_correctly
+  	self.use_instantiated_fixtures = true
+  	
   	get :index
 
   	repos = assigns(:repositories)
   	repo = repos.first
 
-  	#assert_equal repos.count, 1
+  	assert_equal repos.count, 1
   	assert_equal repo.id, 1
   	assert_equal repo.remote_origin_url, "https://github.com/gordev/redmine_remote_git.git"
   	assert_equal repo.local_clone_path, "redmine_remote_git"
