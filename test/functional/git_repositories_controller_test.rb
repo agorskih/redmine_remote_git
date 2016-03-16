@@ -10,8 +10,6 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   end
 
   def test_repositories_initialized_correctly
-  	self.use_instantiated_fixtures = true
-
   	get :index
 
   	repos = assigns(:repositories)
