@@ -3,6 +3,7 @@ class GitRepositoriesController < ApplicationController
 
 
   def index
+  	@repositories = []
   end
 
   def create
