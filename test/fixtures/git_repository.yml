@@ -1,0 +1,4 @@
+redmine_remote_git:
+  id: 1
+  remote_origin_url: https://github.com/gordev/redmine_remote_git.git
+  local_clone_path: redmine_remote_git
