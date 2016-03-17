@@ -1,6 +1,8 @@
 require File.expand_path('../../test_helper', __FILE__)
 
 class GitRepositoriesControllerTest < ActionController::TestCase
+  fixtures :git_repositories
+  
   def test_index
     get :index
 
