@@ -3,9 +3,6 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
-  remote = 'https://github.com/gordev/redmine_remote_git.git'
-  clone = 'redmine_remote_git'
-
   '''def test_create
   	assert_difference GitRepository.all, +1 do
 	  	post(:create, repo: { remote_origin_url: remote, local_clone_path: clone + " copy"})
@@ -33,8 +30,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	assert_equal repos.count, 2
 
   	for repo in repos do
-  		assert_equal repo.remote_origin_url, @remote
-  		assert_equal repo.local_clone_path, @clone
+  		assert_equal repo.remote_origin_url, 'https://github.com/gordev/redmine_remote_git.git'
+  		assert_equal repo.local_clone_path, 'redmine_remote_git'
   	end
   end
 
@@ -59,8 +56,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   		assert_select 'tr' do
   			assert_select 'td', 4
   			assert_select 'td' do 
-					assert_select 'td:nth-child(1)', @remote
-					assert_select 'td:nth-child(2)', @clone
+					assert_select 'td:nth-child(1)', 'https://github.com/gordev/redmine_remote_git.git'
+					assert_select 'td:nth-child(2)', 'redmine_remote_git'
 				end
   		end
   	end
