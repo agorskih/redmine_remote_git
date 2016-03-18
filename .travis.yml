@@ -3,7 +3,8 @@ rvm:
   - 1.9.3
 branches:
   only:
-    - master develop
+    - master
+    - develop
 env:
   - REDMINE_VERSION=2.3.3 VERBOSE=yes
 script:
