@@ -45,8 +45,10 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	assert_select "table" do
   		assert_select "tr" do
   			assert_select "td" do |elements|
-  				assert_equal elements.count, 2
+  				assert_equal elements.count, 4
   				assert_equal elements.first, "https://github.com/gordev/redmine_remote_git.git"
+  				assert_equal elements[1], "redmine_remote_git"
+  				assert_equal elements[2], "https://github.com/gordev/redmine_remote_git.git"
   				assert_equal elements.last, "redmine_remote_git"
   			end
   		end
