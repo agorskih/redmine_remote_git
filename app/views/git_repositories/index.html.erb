@@ -1,1 +1,9 @@
 <h2>GitRepositoriesController#index</h2>
+<table>
+<% for repo in @repositories do %>
+	<tr>
+		<td> <%= repo.remote_origin_url %> </td>
+		<td> <%= repo.local_clone_path %> </td>
+	</tr>
+<% end %>
+</table>
