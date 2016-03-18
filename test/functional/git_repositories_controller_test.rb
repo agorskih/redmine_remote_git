@@ -43,12 +43,13 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	get :index
 
   	assert_select 'table' do
-  		assert_select 'tr' do
-  			assert_select 'td', 4
-				assert_select 'td:nth-child(1)', 'https://github.com/gordev/redmine_remote_git.git'
-				assert_select 'td:nth-child(2)', 'redmine_remote_git'
-				assert_select 'td:nth-child(3)', 'https://github.com/gordev/redmine_remote_git.git'
-				assert_select 'td:nth-child(4)', 'redmine_remote_git'
+  		assert_select 'tr', 2
+			assert_select 'tr:nth-child(1):td', 2
+			assert_select 'tr:nth-child(1):td:nth-child(1)', 'https://github.com/gordev/redmine_remote_git.git'
+			assert_select 'tr:nth-child(1):td:nth-child(2)', 'redmine_remote_git'
+			assert_select 'tr:nth-child(2):td', 2
+			assert_select 'tr:nth-child(2):td:nth-child(3)', 'https://github.com/gordev/redmine_remote_git.git'
+			assert_select 'tr:nth-child(2):td:nth-child(4)', 'redmine_remote_git'
   		end
   	end
   end
