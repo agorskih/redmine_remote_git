@@ -33,8 +33,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	assert_equal repos.count, 2
 
   	for repo in repos do
-  		assert_equal repo.remote_origin_url, remote
-  		assert_equal repo.local_clone_path, clone
+  		assert_equal repo.remote_origin_url, @remote
+  		assert_equal repo.local_clone_path, @clone
   	end
   end
 
@@ -59,8 +59,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   		assert_select 'tr' do
   			assert_select 'td', 4
   			assert_select 'td' do 
-					assert_select 'td:nth-child(1)', remote
-					assert_select 'td:nth-child(2)', clone
+					assert_select 'td:nth-child(1)', @remote
+					assert_select 'td:nth-child(2)', @clone
 				end
   		end
   	end
