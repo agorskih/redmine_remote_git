@@ -50,7 +50,6 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 			assert_select 'tr:nth-child(2):td', 2
 			assert_select 'tr:nth-child(2):td:nth-child(3)', 'https://github.com/gordev/redmine_remote_git.git'
 			assert_select 'tr:nth-child(2):td:nth-child(4)', 'redmine_remote_git'
-  		end
   	end
   end
 end
