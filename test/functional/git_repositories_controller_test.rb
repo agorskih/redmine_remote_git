@@ -25,11 +25,31 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	end
   end
 
-  def test_shoud_contain_table
+  def test_should_contain_one_table
+  	get :index
+
+  	assert_select "table", 1
+  end
+
+  def test_total_rows_in_table_equals_total_repositories
   	get :index
 
   	assert_select "table" do
   		assert_select "tr", 2
+  	end
+  end
+
+  def test_should_contain_table_with_repositories
+  	get :index
+
+  	assert_select "table" do
+  		assert_select "tr" do
+  			assert_select "td" do |elements|
+  				assert_equal elements.count, 2
+  				assert_equal elements.first, "https://github.com/gordev/redmine_remote_git.git"
+  				assert_equal elements.last, "redmine_remote_git"
+  			end
+  		end
   	end
   end
 end
