@@ -11,7 +11,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 	  	post(:create, repo: { remote_origin_url: remote, local_clone_path: clone + ' copy'})
 
 	  	assert_response :success
-	  	assert_template 'index'
+	  	assert_template "index"
 	  	assert_not_nil assigns(:repositories)
 	  end
   end'''
