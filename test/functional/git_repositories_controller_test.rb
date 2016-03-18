@@ -8,7 +8,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 
   '''def test_create
   	assert_difference GitRepository.all, +1 do
-	  	post(:create, repo: { remote_origin_url: remote, local_clone_path: clone + ' copy'})
+	  	post(:create, repo: { remote_origin_url: remote, local_clone_path: clone + " copy"})
 
 	  	assert_response :success
 	  	assert_template "index"
