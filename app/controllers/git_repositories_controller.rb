@@ -6,6 +6,9 @@ class GitRepositoriesController < ApplicationController
   	@repositories = GitRepository.all
   end
 
+  def new
+  end
+
   def create
   end
 
