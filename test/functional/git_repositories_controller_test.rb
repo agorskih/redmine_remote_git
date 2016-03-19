@@ -4,7 +4,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
   def test_new_git_repository
-  	get :new_git_repository_path
+  	get new_git_repository_path
 
   	assert_response :success
     assert_template 'new'
