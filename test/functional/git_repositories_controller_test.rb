@@ -4,10 +4,10 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
   def test_new_git_repository
-  	post :create, :id => '123'
+  	get :new
 
   	assert_response :success
-    #assert_template 'create'
+    assert_template 'new'
   end
 
   def test_page_should_contain_add_button
