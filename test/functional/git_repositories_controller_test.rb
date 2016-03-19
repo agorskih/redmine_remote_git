@@ -3,15 +3,11 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
-  '''def test_create
-  	assert_difference GitRepository.all, +1 do
-	  	post(:create, repo: { remote_origin_url: remote, local_clone_path: clone + " copy"})
+  def test_page_should_contain_add_button
+  	get :index
 
-	  	assert_response :success
-	  	assert_template "index"
-	  	assert_not_nil assigns(:repositories)
-	  end
-  end'''
+  	assert_select 'a', :href => new_repository_path
+  end
 
   def test_index
     get :index
