@@ -6,7 +6,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_page_should_contain_add_button
   	get :index
 
-  	assert_select 'a', :href => new_repository_path
+  	assert_select 'a', :href => new_git_repository_path
   end
 
   def test_index
