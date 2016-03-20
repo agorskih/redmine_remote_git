@@ -3,14 +3,26 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
-  def test_new_git_repository
+  def test_new_should_contain_form
+  	get :new
+
+  	assert_select 'form'
+  	assert_select 'form '
+  	assert_select 'form input' do |inputs|
+  		#<input id="person_name" name="person[name]" type="text" value="Henry"/>
+  		assert_select input.first, { id: 'repository_remote_origin_url' :name='repository[remote_origin_url]', :type='text' }
+  		assert_select input.last, { :name='commit', :type='submit', :value='Create' }
+  	end
+  end
+
+  def test_new
   	get :new
 
   	assert_response :success
     assert_template 'new'
   end
 
-  def test_page_should_contain_add_button
+  def test_index_should_contain_add_button
   	get :index
 
   	assert_select 'a', { :href => new_git_repository_path, :text => 'Add repository' }
@@ -38,13 +50,13 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	end
   end
 
-  def test_should_contain_one_table
+  def test_index_should_contain_one_table
   	get :index
 
   	assert_select 'table', 1
   end
 
-  def test_total_rows_in_table_equals_total_repositories
+  def test_total_rows_in_index_table_equals_total_repositories
   	get :index
 
   	assert_select 'table' do
@@ -52,7 +64,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	end
   end
 
-  def test_should_contain_table_with_repositories
+  def test_index_should_contain_table_with_repositories
   	get :index
 
   	assert_select 'table' do
