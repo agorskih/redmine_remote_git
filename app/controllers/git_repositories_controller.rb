@@ -11,7 +11,7 @@ class GitRepositoriesController < ApplicationController
   end
 
   def create
-    #@repository = GitRepository.create(repository_params)
+    @repository = GitRepository.create(params["repository"])
   end
 
   def delete
