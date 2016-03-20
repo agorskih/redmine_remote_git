@@ -6,12 +6,10 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_new_should_contain_form
   	get :new
 
-  	assert_select 'form input', 3
-
-  	assert_select 'form input' do
-  		assert_select 'input:nth-child(1)', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text' }
-  		assert_select 'input:nth-child(2)', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text' }
-  		assert_select 'input:nth-child(3)', { :name => 'commit', :type => 'submit', :value => 'Create' }
+  	assert_select 'form', { :id => 'new_git_repository'} do
+  		assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text' }
+  		assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text' }
+  		assert_select 'input', { :name => 'commit', :type => 'submit', :value => 'Create' }
   	end
   end
 
