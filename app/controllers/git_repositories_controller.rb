@@ -7,7 +7,7 @@ class GitRepositoriesController < ApplicationController
   end
 
   def new
-    @git_repository = GitRepository.new
+    @repository = GitRepository.new
   end
 
   def create

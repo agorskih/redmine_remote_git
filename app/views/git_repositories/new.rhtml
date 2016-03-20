@@ -1,6 +1,6 @@
 <h2>GitRepositoriesController#new</h2>
-
-<%= form_for @git_repository, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
+<br>
+<%= form_for @repository, url: {action: "create"}, html: {class: "nifty_form"} do |f| %>
   <%= f.text_field :remote_origin_url %>
   <%= f.text_field :local_clone_path %>
   <%= f.submit "Create" %>
