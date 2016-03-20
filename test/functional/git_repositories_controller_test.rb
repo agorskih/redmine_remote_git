@@ -10,7 +10,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	assert_select 'form '
   	assert_select 'form input' do |inputs|
   		#<input id="person_name" name="person[name]" type="text" value="Henry"/>
-  		assert_select inputs.first, { id: 'repository_remote_origin_url' :name='repository[remote_origin_url]', :type='text' }
+  		assert_select inputs.first, { id: 'repository_remote_origin_url', :name='repository[remote_origin_url]', :type='text' }
   		assert_select inputs.last, { :name='commit', :type='submit', :value='Create' }
   	end
   end
