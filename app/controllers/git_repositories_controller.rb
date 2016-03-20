@@ -11,12 +11,9 @@ class GitRepositoriesController < ApplicationController
   end
 
   def create
-    Rails.logger.debug params.inspect
-    fields = params['repository']
-    @repository = GitRepository.new
-    @repository.remote_origin_url = params["authenticity_token"]
-    @repository.local_clone_path = params["authenticity_token"]
-    @repository.save
+    @repository = GitRepository.create(params[:git_repository])
+    #@repository.remote_origin_url = params["authenticity_token"]
+    #@repository.local_clone_path = params["authenticity_token"]
   end
 
   def delete
