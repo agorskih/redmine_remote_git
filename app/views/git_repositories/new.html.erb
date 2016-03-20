@@ -1,7 +1,11 @@
 <h2>GitRepositoriesController#new</h2>
 
 <%= form_for @repository, url: {action: "create"} do |f| %>
+  <%= f.label :remote_origin_url %>
   <%= f.text_field :remote_origin_url %>
+  <br>
+  <%= f.label :remote_origin_url %>
   <%= f.text_field :local_clone_path %>
+  <br>
   <%= f.submit "Create" %>
 <% end %>
