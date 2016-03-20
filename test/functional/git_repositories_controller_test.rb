@@ -11,8 +11,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   		assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text' }
   		assert_select 'input', { :name => 'commit', :type => 'submit', :value => 'Create' }
 
-  		assert_select 'label', 'repository remote origin url'
-  		assert_select 'label', 'repository local clone path'
+  		assert_select 'label', 'repository remote origin url:'
+  		assert_select 'label', 'repository local clone path:'
   	end
   end
 
