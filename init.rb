@@ -6,11 +6,3 @@ Redmine::Plugin.register :redmine_remote_git do
   url 'http://example.com/path/to/plugin'
   author_url 'http://example.com/about'
 end
-
-class MyRoutes < Redmine::Hook::Listener
-  def routes(context)
-    context[:map].resources :git_repositories
-  end
-end
-
-Redmine::Hook.add_listener(MyRoutes)
