@@ -31,7 +31,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_index
     get :index
 
-    Rails::logger.debug get_repositories_path
+    Rails::logger.debug git_repositories_path
 
     assert_response :success
     assert_template 'index'
