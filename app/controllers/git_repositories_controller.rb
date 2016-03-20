@@ -13,7 +13,7 @@ class GitRepositoriesController < ApplicationController
   def create
     fields = params[:repository]
     @repository = GitRepository.new
-    #@repository.remote_origin_url = fields['repository_remote_origin_url']
+    @repository.remote_origin_url = fields[:repository_remote_origin_url]
     #@repository.local_clone_path = fields['repository_local_clone_path']
     #@repository.save
   end
