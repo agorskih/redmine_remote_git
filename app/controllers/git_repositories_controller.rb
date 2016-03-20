@@ -11,16 +11,14 @@ class GitRepositoriesController < ApplicationController
   end
 
   def create
-    @repository = GitRepository.create(params[:git_repository])
-    #@repository.remote_origin_url = params["authenticity_token"]
-    #@repository.local_clone_path = params["authenticity_token"]
+    @repository = GitRepository.create(repository_params)
   end
 
   def delete
   end
 
-  '''private
+  private
   def repository_params
-    params.require(:repository).permit(:remote_origin_url, :local_clone_path)
-  end'''
+    params.require(:git_repository).permit(:remote_origin_url, :local_clone_path)
+  end
 end
