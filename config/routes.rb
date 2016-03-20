@@ -6,5 +6,6 @@
 
 get 'git_repositories', :to => 'git_repositories#index'
 get 'git_repositories/new', :to => 'git_repositories#new'
+post 'git_repositories', :to => 'git_repositories#create'
 
 resources :git_repositories, :only => [:index, :new]
