@@ -7,7 +7,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   	get :new
 
   	assert_select 'form' do
-  		assert_select 'input:nth-child(1)', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text' }
+  		assert_select 'input:nth-child(1)', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text', :value => '' }
+  		assert_select 'input:nth-child(2)', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text', :value => '' }
   		assert_select 'input:nth-child(3)', { :name => 'commit', :type => 'submit', :value => 'Create' }
   	end
   end
