@@ -5,14 +5,14 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 
   def test_create_should_add_repository_to_db
   	assert_difference 'GitRepository.all.count', +1 do
-	  	post :create, :git_repository => { :repository_remote_origin_url => 'https://github.com/gordev/redmine_remote_git.git', :repository_local_clone_path => 'redmine_remote_git copy' }
+	  	post :create, { :git_repository => { :repository_remote_origin_url => 'https://github.com/gordev/redmine_remote_git.git', :repository_local_clone_path => 'redmine_remote_git copy' }}
   	end
   end
 
   def test_new_should_contain_form
   	get :new
 
-  	assert_select 'form', { :id => 'new_git_repository', :action => '/git_repositories' } do
+  	assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
   		assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text' }
   		assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text' }
   		assert_select 'input', { :name => 'commit', :type => 'submit', :value => 'Create' }
