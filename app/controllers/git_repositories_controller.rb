@@ -16,9 +16,5 @@ class GitRepositoriesController < ApplicationController
 
   def delete
   end
-
-  '''private
-  def repository_params
-    params.require(:repository).permit(:remote_origin_url, :local_clone_path)
-  end'''
+  
 end
