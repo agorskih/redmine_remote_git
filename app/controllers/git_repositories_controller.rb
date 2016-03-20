@@ -7,11 +7,11 @@ class GitRepositoriesController < ApplicationController
   end
 
   def new
-    @repository = GitRepository.new
+    @git_repository = GitRepository.new
   end
 
   def create
-    GitRepository.create(params[:repository])
+    GitRepository.create(params[:git_repository])
   end
 
   def delete

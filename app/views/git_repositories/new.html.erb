@@ -1,6 +1,6 @@
 <h2>GitRepositoriesController#new</h2>
 
-<%= form_for @repository, url: {action: "create"} do |f| %>
+<%= form_for @git_repository, url: {action: "create"} do |f| %>
   <%= label_tag :remote_origin_url, 'repository remote origin url:' %>
   <%= f.text_field :remote_origin_url %>
   <br>
