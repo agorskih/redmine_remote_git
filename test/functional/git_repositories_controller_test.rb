@@ -5,7 +5,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 
   def test_create_should_add_repository_to_db
   	assert_difference 'GitRepository.all.count', +1 do
-  		repo = { :git_repository => { :repository_remote_origin_url => 'https://github.com/gordev/redmine_remote_git.git', :repository_local_clone_path => 'redmine_remote_git copy' }}
+  		repo = { git_repository = { repository_remote_origin_url = 'https://github.com/gordev/redmine_remote_git.git', repository_local_clone_path = 'redmine_remote_git copy' }}
 	  	post :create, :repository => repo
   	end
   end
