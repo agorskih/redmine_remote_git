@@ -31,8 +31,6 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_index
     get :index
 
-    assert_equal 'path is', git_repositories_path
-
     assert_response :success
     assert_template 'index'
     assert_not_nil assigns(:repositories)
