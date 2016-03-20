@@ -3,10 +3,17 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_create_shouldadd_repository_to_db
+  	assert_difference 'GitRepository.all.count', +1 do
+	  	post :create, :repository => { :repository_remote_origin_url => 'https://github.com/gordev/redmine_remote_git.git', 
+	  																 :repository_local_clone_path => 'redmine_remote_git copy' }
+  	end
+  end
+
   def test_new_should_contain_form
   	get :new
 
-  	assert_select 'form', { :id => 'new_git_repository'} do
+  	assert_select 'form', { :id => 'new_git_repository', :action => '/git_repositories' } do
   		assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text' }
   		assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text' }
   		assert_select 'input', { :name => 'commit', :type => 'submit', :value => 'Create' }
@@ -37,7 +44,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:repositories)
   end
 
-  def test_repositories_are_loaded_from_db
+  def test_index_should_load_repositories_from_db
   	get :index
 
   	repos = assigns(:repositories)
