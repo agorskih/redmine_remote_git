@@ -3,6 +3,16 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_form_should_be_inside_table
+    get :new
+
+    assert_select 'table', 1 do
+      assert_select 'tr', 3
+      assert_select 'td', 6 
+      assert_select 'input', 3
+    end
+  end
+
   def test_create_should_add_repository_to_db
   	assert_difference 'GitRepository.all.count', +1 do
 	  	post :create, :git_repository => { :remote_origin_url => "https://github.com/gordev/redmine_remote_git.git", :local_clone_path => "redmine_remote_git copy" }
