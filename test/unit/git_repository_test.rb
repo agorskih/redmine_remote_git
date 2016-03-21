@@ -4,8 +4,9 @@ class GitRepositoryTest < ActiveSupport::TestCase
 	fixtures :git_repositories
 
 	def test_only_valid_url_should_be_allowd
-		repo = GitRepository.new(remote_origin_url: 'invalid/url', local_clone_path: 'redmine_remote_git')
+		repo = GitRepository.new(remote_origin_url: 'invalid://url', local_clone_path: 'redmine_remote_git')
 		refute repo.valid?
+		assert_equal(repo.errors[:remote_origin_url], ['remote origin URL is not HTTP/HTTPS URL'])
 	end
 
 	def test_clone_path_should_be_unique

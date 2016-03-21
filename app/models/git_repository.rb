@@ -4,11 +4,12 @@ class GitRepository < ActiveRecord::Base
   unloadable
   validates :remote_origin_url, :local_clone_path, presence: true 
   validates :local_clone_path, uniqueness: true
-  validate :remote_origin_url_format_must_be_valid
+  validate :remote_origin_url_must_be_HTTP_or_HTTPS_URL
 
-  def remote_origin_url_format_must_be_valid
-  	!!URI.parse(remote_origin_url)
+  def remote_origin_url_must_be_HTTP_or_HTTPS_URL
+  	uri = URI.parse(remote_origin_url)
+  	uri.kind_of?(URI::HTTP)
 	rescue URI::InvalidURIError
-	  errors.add(:remote_origin_url, 'invalid url format')
+	  errors.add(:remote_origin_url, 'remote origin URL is not HTTP/HTTPS URL')
   end
 end
