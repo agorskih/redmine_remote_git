@@ -20,7 +20,7 @@ class GitRepositoriesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
   end
   
 end
