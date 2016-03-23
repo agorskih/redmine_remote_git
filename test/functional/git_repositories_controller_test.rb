@@ -27,7 +27,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
     assert_select 'form[class=new_git_repository][id=new_git_repository][action=/git_repositories][method=post]', 1
 
     assert_select "form table tr td input[id=git_repository_remote_origin_url][type=text][name='git_repository[remote_origin_url]'][value=invalid://http/url]", 1
-    assert_select "form table tr td input[id=git_repository_local_clone_path][type=text][name='git_repository[local_clone_path]'][value='']", 1
+    assert_select "form table tr td input[id=git_repository_local_clone_path][type=text][name='git_repository[local_clone_path]']", 1
     assert_select 'form table tr td input[type=submit][value=Create][name=commit]', 1
 
     assert_select 'form table tr td label', 'repository remote origin url:'
