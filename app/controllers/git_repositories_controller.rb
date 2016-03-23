@@ -14,7 +14,7 @@ class GitRepositoriesController < ApplicationController
     @repository = GitRepository.create(params[:git_repository])
 
     if @repository.valid?
-      redirect_to action: 'index', status: 303
+      redirect_to action: :index
     end
   end
 
