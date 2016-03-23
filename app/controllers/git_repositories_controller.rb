@@ -21,5 +21,7 @@ class GitRepositoriesController < ApplicationController
 
   def destroy
   end
-  
+
+  def update
+  end
 end
