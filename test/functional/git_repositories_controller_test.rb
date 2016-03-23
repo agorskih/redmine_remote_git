@@ -3,6 +3,12 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_index_should_contain_delete_links
+    get :index
+
+    assert_select 'a[href=#{new_git_repository_path}]', 'Delete'
+  end
+
   def test_new_should_not_contain_errors
     get :new
 
@@ -63,7 +69,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_index_should_contain_add_button
   	get :index
 
-  	assert_select 'a', { :href => new_git_repository_path, :text => 'Add repository', :count => 1 }
+  	assert_select 'a[href=#{new_git_repository_path}]', 'Add repository'
   end
 
   def test_index
