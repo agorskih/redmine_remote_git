@@ -59,13 +59,13 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_new_should_contain_form
   	get :new
 
-    #assert_select 'form table tr td input[type=text][id=repository_remote_origin_url]', 1
+    #assert_select 'form table tr td input[type=text][id=remote_origin_url]', 1
 
 
 
   	assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
   		
-      assert_select 'input[type=text]', 1
+      assert_select 'input[type=text][id=remote_origin_url]', 1
 
   		#assert_select 'form input[type=text][id=repository_local_clone_path]', 1
   		assert_select 'form input[type=submit][value=Create][name=commit]', 1
