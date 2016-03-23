@@ -1,7 +1,6 @@
 class GitRepositoriesController < ApplicationController
   unloadable
 
-
   def index
   	@repositories = GitRepository.all
   end
