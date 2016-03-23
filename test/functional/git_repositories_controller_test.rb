@@ -125,8 +125,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   		assert_select 'tr' do
   			assert_select 'td', 4
   			assert_select 'td' do 
-					assert_select 'td:nth-child(1)', 'https://github.com/gordev/redmine_remote_git.git', 1
-					assert_select 'td:nth-child(2)', 'redmine_remote_git', 1
+					assert_select 'td:nth-child(1)', 'https://github.com/gordev/redmine_remote_git.git'
+					assert_select 'td:nth-child(2)', 'redmine_remote_git'
 				end
   		end
   	end
