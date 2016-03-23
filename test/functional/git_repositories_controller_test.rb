@@ -7,8 +7,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
     get :new
 
     assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
-      assert_select 'label', { :id => 'remote_origin_url_error', :value => '' }
-      assert_select 'label', { :id => 'local_clone_path_error', :value => '' }
+      assert_select 'label', { :id => 'remote_origin_url_error', :value => '' }, 1
+      assert_select 'label', { :id => 'local_clone_path_error', :value => '' }, 1
     end
   end
 
