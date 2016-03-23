@@ -70,8 +70,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   		#assert_select 'form input[type=text][id=repository_local_clone_path]', 1
   		assert_select 'form input[type=submit][value=Create][name=commit]', 1
 
-  		assert_select 'label', 'repository remote origin url:', 1
-  		assert_select 'label', 'repository local clone path:', 1
+  		assert_select 'label', 'repository remote origin url:'
+  		assert_select 'label', 'repository local clone path:'
   	end
   end
 
