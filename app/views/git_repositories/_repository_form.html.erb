@@ -1,4 +1,4 @@
-<%= form_for(repositor, url: {action: "create"}) do |f| %>
+<%= form_for @repository, url: {action: "create"} do |f| %>
 	<table>
 		<tr>
 			<td> <%= label_tag :remote_origin_url, 'repository remote origin url:' %> </td>
