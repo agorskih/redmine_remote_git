@@ -12,6 +12,10 @@ class GitRepositoriesController < ApplicationController
 
   def create
     @repository = GitRepository.create(params[:git_repository])
+
+    if @repository.valid?
+      redirect_to action: 'index', status: 303
+    end
   end
 
   def delete

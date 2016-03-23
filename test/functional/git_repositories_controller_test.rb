@@ -3,6 +3,12 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_new_should_redirect_to_index_upon_successful_repository_creation
+    post :create, :git_repository => { :remote_origin_url => "https://github.com/gordev/redmine_remote_git.git", :local_clone_path => "redmine_remote_git copy" }
+
+    assert_redirected_to controller: 'git_repository', action: 'index'
+  end
+
   def test_form_should_be_inside_table
     get :new
 
