@@ -8,7 +8,6 @@ class GitRepositoriesController < ApplicationController
 
   def new
     @repository = GitRepository.new
-    @repository.errors.clear
   end
 
   def create

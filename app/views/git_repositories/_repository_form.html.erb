@@ -3,12 +3,16 @@
 		<tr>
 			<td> <%= label_tag :remote_origin_url, 'repository remote origin url:' %> </td>
 			<td> <%= f.text_field :remote_origin_url %> </td>
-			<td> <%= label_tag :remote_origin_url_error, @repository.errors[:remote_origin_url].first %> </td>
+			<% unless @repository.errors.empty? %>
+				<td> <%= label_tag :remote_origin_url_error, @repository.errors[:remote_origin_url].first %> </td>
+			<% end %>
 		</tr>
 		<tr>
 			<td> <%= label_tag :local_clone_path, 'repository local clone path:' %> </td>
 			<td> <%= f.text_field :local_clone_path %> </td>
-			<td> <%= label_tag :local_clone_path_error, @repository.errors[:local_clone_path].first %> </td>
+			<% unless @repository.errors.empty? %>
+				<td> <%= label_tag :local_clone_path_error, @repository.errors[:local_clone_path].first %> </td>
+			<% end %>
 		</tr>
 		<tr>
 			<td>  </td>
