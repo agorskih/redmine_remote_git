@@ -6,7 +6,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_new_should_not_contain_errors
     get :new
 
-    assert_select 'form', { :id => 'repository', :action => '/git_repositories', :count => 1 } do
+    assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
       assert_select 'label', { :id => 'remote_origin_url_error', :value => '', :count => 1 }
       assert_select 'label', { :id => 'local_clone_path_error', :value => '', :count => 1 }
     end
@@ -15,7 +15,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_create_should_show_errors
     post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
 
-    assert_select 'form', { :id => 'repository', :action => '/git_repositories', :count => 1 } do
+    assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
       assert_select 'label', { :id => 'remote_origin_url_error', :value => 'remote origin URL is not HTTP/HTTPS URL', :count => 1 }
       assert_select 'label', { :id => 'local_clone_path_error', :value => '', :count => 1 }
     end
@@ -24,7 +24,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_create_should_allow_to_fix_errors_in_case_save_failing
     post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
 
-    assert_select 'form', { :id => 'repository', :action => '/git_repositories', :count => 1 } do
+    assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
       assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text', :value =>  'invalid://http/url', :count => 1 }
       assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text', :value => '', :count => 1 }
       assert_select 'input', { :name => 'commit', :type => 'submit', :value => 'Create', :count => 1 }
@@ -59,7 +59,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_new_should_contain_form
   	get :new
 
-  	assert_select 'form', { :id => 'repository', :action => '/git_repositories', :count => 1 } do
+  	assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
   		assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text', :count => 1 }
   		assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text', :count => 1 }
   		assert_select 'input', { :name => 'commit', :type => 'submit', :value => 'Create', :count => 1 }
