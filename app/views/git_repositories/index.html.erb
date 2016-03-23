@@ -4,8 +4,8 @@
 	<tr>
 		<td> <%= repo.remote_origin_url %> </td>
 		<td> <%= repo.local_clone_path %> </td>
-		<td> <%= button_to('Destroy', git_repository_path, method: "delete", remote: true, data: { confirm: 'Are you sure?', disable_with: 'loading...' }) %>
-		
+		<td> 
+			<%= link_to "Delete", git_repository_path(repo), method: :delete, data: { confirm: 'Are you sure?' } %>
 		</td>
 	</tr>
 <% end %>
