@@ -36,7 +36,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 
     assert_select 'table', 1 do
       assert_select 'tr', 3
-      assert_select 'td', 6 
+      assert_select 'td', 9 
       assert_select 'input', 3
     end
   end
