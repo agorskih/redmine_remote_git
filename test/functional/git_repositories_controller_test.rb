@@ -6,7 +6,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_index_should_contain_delete_links
     get :index
 
-    assert_select ('a[href=%s]' % [git_repositories_path]), 'delete'
+    assert_select ('a[href=%s]' % [git_repository_path]), 'delete'
   end
 
   def test_new_should_not_contain_errors
