@@ -4,11 +4,11 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
   def test_create_should_allow_to_fix_errors_in_case_save_failing
-    post :create, :git_repository => { :remote_origin_url => 'invalid://http/url', :local_clone_path => 'redmine_remote_git' }
+    post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
 
     assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
-      assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text', :text =>  'invalid://http/url'}
-      assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text', :text => 'redmine_remote_git' }
+      assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text', :value =>  'invalid://http/url'}
+      assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text', :value => '' }
       assert_select 'input', { :name => 'commit', :type => 'submit', :value => 'Create' }
 
       assert_select 'label', 'repository remote origin url:'
