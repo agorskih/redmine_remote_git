@@ -15,6 +15,8 @@ class GitRepositoriesController < ApplicationController
 
     if @repository.valid?
       redirect_to action: :index
+    else
+      flash[:error] = @repository.errors
     end
   end
 
