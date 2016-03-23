@@ -7,8 +7,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
     post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
 
     assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
-      assert_select 'label', 'remote origin URL is not HTTP/HTTPS URL'
-      assert_select 'label', ''
+      assert_select 'label', { :id => 'remote_origin_url_error', :value => 'remote origin URL is not HTTP/HTTPS URL' }
+      assert_select 'label', { :id => 'local_clone_path_error', :value => '' }
     end
   end
 
