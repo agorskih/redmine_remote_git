@@ -6,19 +6,13 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_new_should_not_contain_errors
     get :new
 
-    assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
-      assert_select 'label', { :id => 'remote_origin_url_error', :value => '', :count => 1 }
-      assert_select 'label', { :id => 'local_clone_path_error', :value => '', :count => 1 }
-    end
+    assert_nil flash[:error]
   end
 
   def test_create_should_show_errors
     post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
 
-    assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
-      assert_select 'label', { :id => 'remote_origin_url_error', :value => 'remote origin URL is not HTTP/HTTPS URL', :count => 1 }
-      assert_select 'label', { :id => 'local_clone_path_error', :value => '', :count => 1 }
-    end
+    assert_not_nil flash[:error]
   end
 
   def test_create_should_allow_to_fix_errors_in_case_save_failing
