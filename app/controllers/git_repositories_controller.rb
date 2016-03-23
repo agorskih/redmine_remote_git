@@ -6,9 +6,21 @@ class GitRepositoriesController < ApplicationController
   	@repositories = GitRepository.all
   end
 
+  def new
+    @repository = GitRepository.new
+  end
+
   def create
+    @repository = GitRepository.create(params[:git_repository])
+
+    if @repository.valid?
+      redirect_to action: :index
+    else
+      flash[:error] = @repository.errors.full_messages.first
+    end
   end
 
   def delete
   end
+  
 end
