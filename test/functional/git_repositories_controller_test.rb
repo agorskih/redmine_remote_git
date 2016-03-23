@@ -65,7 +65,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 
   	assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
   		
-      assert_select 'input[id=git_repository_remote_origin_url][type=text][name="git_repository[remote_origin_url]"]', 1
+      assert_select "input[id=git_repository_remote_origin_url][type=text][name='git_repository[remote_origin_url]']", 1
 
   		#assert_select 'form input[type=text][id=repository_local_clone_path]', 1
   		assert_select 'form input[type=submit][value=Create][name=commit]', 1
