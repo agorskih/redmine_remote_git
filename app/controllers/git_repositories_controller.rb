@@ -19,7 +19,7 @@ class GitRepositoriesController < ApplicationController
     end
   end
 
-  def destroy
+  def delete
     @repository = GitRepository.find(params[:id])
     @repository.destroy
   end
