@@ -24,30 +24,20 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_create_should_allow_to_fix_errors_in_case_save_failing
     post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
 
-    assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
-      assert_select 'input', { :id => 'repository_remote_origin_url', :name => 'repository[remote_origin_url]', :type => 'text', :value =>  'invalid://http/url', :count => 1 }
-      assert_select 'input', { :id => 'repository_local_clone_path', :name => 'repository[local_clone_path]', :type => 'text', :value => '', :count => 1 }
-      assert_select 'form input[type=submit][value=Create][name=commit]', 1
+    assert_select 'form[class=new_git_repository][id=new_git_repository][action=/git_repositories][method=post]', 1
 
-      assert_select 'label', 'repository remote origin url:', 1
-      assert_select 'label', 'repository local clone path:', 1
-    end
+    assert_select "form table tr td input[id=git_repository_remote_origin_url][type=text][name='git_repository[remote_origin_url]'][value=invalid://http/url]", 1
+    assert_select "form table tr td input[id=git_repository_local_clone_path][type=text][name='git_repository[local_clone_path]'][value='']", 1
+    assert_select 'form table tr td input[type=submit][value=Create][name=commit]', 1
+
+    assert_select 'form table tr td label', 'repository remote origin url:'
+    assert_select 'form table tr td label', 'repository local clone path:'
   end
 
   def test_new_should_redirect_to_index_upon_successful_repository_creation
     post :create, :git_repository => { :remote_origin_url => "https://github.com/gordev/redmine_remote_git.git", :local_clone_path => "redmine_remote_git copy" }
 
     assert_redirected_to action: 'index'
-  end
-
-  def test_form_should_be_inside_table
-    get :new
-
-    assert_select 'table', 1 do
-      assert_select 'tr', 3
-      assert_select 'td', 6 
-      assert_select 'input', 3
-    end
   end
 
   def test_create_should_add_repository_to_db
