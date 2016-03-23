@@ -3,6 +3,15 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_create_should_show_errors
+    post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
+
+    assert_select 'form', { :id => 'repository', :action => '/git_repositories' } do
+      assert_select 'label', 'remote origin URL is not HTTP/HTTPS URL'
+      assert_select 'label', ''
+    end
+  end
+
   def test_create_should_allow_to_fix_errors_in_case_save_failing
     post :create, :git_repository => { :remote_origin_url => 'invalid://http/url' }
 
