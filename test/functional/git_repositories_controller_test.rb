@@ -6,11 +6,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_index_should_contain_delete_links
     get :index
 
-    for repo in Repository.all
-      assert_select ('a1234123 [href=%s][data-confirm=Are you sure?][data-method=delete][data-remote=true]' % [git_repository_path(repo)]), 1
-    end
-
-    assert_select ('a1234123 [href=%s][data-confirm=Are you sure?][data-method=delete][data-remote=true]' % [git_repository_path(repo)]), 1
+    assert_select ('a[href=%s][data-confirm=Are you sure?][data-method=delete][data-remote=true]' % [git_repository_path(Repository.all.first)]), 1
+    assert_select ('a[href=%s][data-confirm=Are you sure?][data-method=delete][data-remote=true]' % [git_repository_path(Repository.all.last)]), 1
   end
 
   def test_new_should_not_contain_errors
