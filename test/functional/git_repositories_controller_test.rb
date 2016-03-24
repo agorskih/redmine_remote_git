@@ -3,6 +3,12 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_clone_should_redirect_to_index
+    post :clone, :id => GitRepository.all.first.id
+
+    assert_redirected_to action: 'index'
+  end
+
   def test_index_has_clone_buttons
     get :index
 

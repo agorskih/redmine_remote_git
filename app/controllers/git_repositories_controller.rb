@@ -28,6 +28,7 @@ class GitRepositoriesController < ApplicationController
   end
 
   def clone
+    redirect_to action: :index
   end
 
 end
