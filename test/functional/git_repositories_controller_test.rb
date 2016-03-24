@@ -10,7 +10,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 
     assert_response :success
     assert_template 'index'
-    assert_equal flash[:notice] ['Repository was successfully deleted']
+    assert_equal flash[:notice] 'Repository was successfully deleted'
   end
 
   def test_index_should_contain_delete_links
