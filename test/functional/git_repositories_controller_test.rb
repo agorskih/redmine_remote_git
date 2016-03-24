@@ -7,7 +7,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
     get :index
 
     for repo in Repository.all
-      assert_select ('a[href=%s]' % [git_repository_path(repo)]), 'delete'
+      assert_select ('a[href=%s][data-confirm=Are you sure?][data-method=delete][data-remote=true]' % [git_repository_path(repo)]), 'delete'
     end
   end
 
