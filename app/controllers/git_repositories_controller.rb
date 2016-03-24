@@ -23,6 +23,7 @@ class GitRepositoriesController < ApplicationController
     GitRepository.find(params[:id]).destroy
     @repositories = GitRepository.all
 
+    flash[:notice] = ['Repository was successfully deleted']
     render :index
   end
 
