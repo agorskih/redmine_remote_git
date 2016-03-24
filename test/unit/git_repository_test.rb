@@ -3,6 +3,17 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoryTest < ActiveSupport::TestCase
 	fixtures :git_repositories
 
+	def test_clone
+		repo = GitRepository.all.first
+		repo.clone
+
+		assert_nothing_raised do
+			require 'git'
+			
+			g = Git.open(repo.local_clone_path, :log => Logger.new(STDOUT))
+		end
+	end
+
 	def test_only_valid_url_should_be_allowd
 		repo = GitRepository.new(remote_origin_url: 'invalid://url', local_clone_path: 'redmine_remote_git copy')
 		refute repo.valid?

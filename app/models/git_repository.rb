@@ -14,4 +14,9 @@ class GitRepository < ActiveRecord::Base
 	rescue URI::InvalidURIError
 	  errors.add(:remote_origin_url, 'remote origin URL is not HTTP/HTTPS URL')
   end
+
+  def clone
+    
+  end
+
 end
