@@ -96,6 +96,7 @@ run_install() {
 
   # add coveralls
   echo "gem 'coveralls', require: false" >> $BUNDLE_GEMFILE
+  echo "gem 'git', require: true" >> $BUNDLE_GEMFILE
 
   # install gems
   mkdir -p vendor/bundle

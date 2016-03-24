@@ -5,7 +5,7 @@ class GitRepositoryTest < ActiveSupport::TestCase
 	fixtures :git_repositories
 
 	def test_clone
-		repo = GitRepository.new(remote_origin_url: 'https://github.com/gordev/redmine_remote_git.git', local_clone_path: '$OPENSHIFT_DATA_DIR/test.git')
+		repo = GitRepository.new(remote_origin_url: 'https://github.com/gordev/redmine_remote_git.git', local_clone_path: "%s/test.git" % ENV['OPENSHIFT_DATA_DIR'] )
 		repo.clone
 
 		assert_nothing_raised do
