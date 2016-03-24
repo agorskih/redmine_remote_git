@@ -7,6 +7,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
     assert_difference 'GitRepository.all.count', -1 do
       post :destroy, :id => GitRepository.all.first.id
     end
+
+    assert_redirected_to action: 'index'
   end
 
   def test_index_should_contain_delete_links
