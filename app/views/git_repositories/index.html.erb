@@ -4,6 +4,7 @@
 	<tr>
 		<td> <%= repo.remote_origin_url %> </td>
 		<td> <%= repo.local_clone_path %> </td>
+		<td> <%= link_to "clone", git_repository_clone_path(repo), method: :post, data: { confirm: 'Are you sure?' } %> </td>
 		<td> <%= link_to "delete", git_repository_path(repo), method: :delete, data: { confirm: 'Are you sure?' } %> </td>
 	</tr>
 <% end %>
