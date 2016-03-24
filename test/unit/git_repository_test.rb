@@ -1,15 +1,14 @@
 require File.expand_path('../../test_helper', __FILE__)
+require 'git'
 
 class GitRepositoryTest < ActiveSupport::TestCase
 	fixtures :git_repositories
 
 	def test_clone
-		repo = GitRepository.all.first
+		repo = GitRepository.new(remote_origin_url: 'https://github.com/gordev/redmine_remote_git.git', local_clone_path: '$OPENSHIFT_DATA_DIR/test.git')
 		repo.clone
 
 		assert_nothing_raised do
-			require 'git'
-			
 			g = Git.open(repo.local_clone_path, :log => Logger.new(STDOUT))
 		end
 	end
