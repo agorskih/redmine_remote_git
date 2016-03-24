@@ -27,4 +27,7 @@ class GitRepositoriesController < ApplicationController
     render :index
   end
 
+  def clone
+  end
+
 end

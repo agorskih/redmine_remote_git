@@ -3,6 +3,14 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_index_has_clone_buttons
+    get :index
+
+    assert_equal(GitRepository.all.count, 2)
+    assert_select ('a[href=%s][data-confirm=Are you sure?][data-method=post]' % [git_repository_clone_path(GitRepository.all.first)]), 1
+    assert_select ('a[href=%s][data-confirm=Are you sure?][data-method=post]' % [git_repository_clone_path(GitRepository.all.last)]), 1
+  end
+
   def test_destroy
     assert_difference 'GitRepository.all.count', -1 do
       post :destroy, :id => GitRepository.all.first.id
