@@ -11,7 +11,7 @@ class GitRepositoryTest < ActiveSupport::TestCase
 		assert_not_nil ENV['OPENSHIFT_DATA_DIR']
 
 		assert_nothing_raised do
-			g = Git.open(ENV['OPENSHIFT_DATA_DIR'] + '/test', :log => Logger.new(STDOUT))
+			g = Git.bare(ENV['OPENSHIFT_DATA_DIR'] + '/test.git', :log => Logger.new(STDOUT))
 		end
 	end
 
