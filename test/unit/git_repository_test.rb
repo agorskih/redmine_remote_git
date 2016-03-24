@@ -1,16 +1,25 @@
 require File.expand_path('../../test_helper', __FILE__)
 require 'git'
+require 'fileutils'
 
 class GitRepositoryTest < ActiveSupport::TestCase
 	fixtures :git_repositories
 
 	def test_clone
+		FileUtils.rm_rf(ENV['OPENSHIFT_DATA_DIR'] + '/test.git')
+		
 		repo = GitRepository.new(remote_origin_url: 'https://github.com/gordev/redmine_remote_git.git', local_clone_path: 'test.git' )
-		#repo.clone
+		repo.clone
 
 		assert_not_nil ENV['OPENSHIFT_DATA_DIR']
 
 		assert_nothing_raised do
+			g = Git.bare(ENV['OPENSHIFT_DATA_DIR'] + '/test.git', :log => Logger.new(STDOUT))
+		end
+
+		repo.destroy
+
+		assert_raise do
 			g = Git.bare(ENV['OPENSHIFT_DATA_DIR'] + '/test.git', :log => Logger.new(STDOUT))
 		end
 	end
