@@ -8,6 +8,8 @@ class GitRepositoryTest < ActiveSupport::TestCase
 		repo = GitRepository.new(remote_origin_url: 'https://github.com/gordev/redmine_remote_git.git', local_clone_path: 'test.git' )
 		repo.clone
 
+		assert_not_nil ENV['OPENSHIFT_DATA_DIR']
+
 		assert_nothing_raised do
 			g = Git.open(ENV['OPENSHIFT_DATA_DIR'] + '/' + repo.local_clone_path, :log => Logger.new(STDOUT))
 		end
