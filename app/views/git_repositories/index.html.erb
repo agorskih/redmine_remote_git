@@ -4,7 +4,7 @@
 	<tr>
 		<td> <%= repo.remote_origin_url %> </td>
 		<td> <%= repo.local_clone_path %> </td>
-		<td> <%= link_to "Delete", git_repositories_path(repo), method: :delete, remote: :true, data: { confirm: 'Are you sure?' } %> </td>
+		<td> <%= link_to "Delete", git_repository_path(repo), method: :delete, remote: :true, data: { confirm: 'Are you sure?' } %> </td>
 	</tr>
 <% end %>
 </table>
