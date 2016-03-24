@@ -7,7 +7,7 @@ class GitRepositoryTest < ActiveSupport::TestCase
 
 	def test_clone
 		FileUtils.rm_rf(ENV['OPENSHIFT_DATA_DIR'] + '/test.git')
-		
+
 		repo = GitRepository.new(remote_origin_url: 'https://github.com/gordev/redmine_remote_git.git', local_clone_path: 'test.git' )
 		repo.clone
 
@@ -19,7 +19,7 @@ class GitRepositoryTest < ActiveSupport::TestCase
 
 		repo.destroy
 
-		assert_raise do
+		assert_raises ArgumentError do
 			g = Git.bare(ENV['OPENSHIFT_DATA_DIR'] + '/test.git', :log => Logger.new(STDOUT))
 		end
 	end
