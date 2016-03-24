@@ -1,7 +1,6 @@
 class GitRepositoriesController < ApplicationController
   unloadable
 
-
   def index
   	@repositories = GitRepository.all
   end
@@ -20,7 +19,12 @@ class GitRepositoriesController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
+    GitRepository.find(params[:id]).destroy
+    @repositories = GitRepository.all
+
+    flash[:notice] = 'Repository was successfully deleted'
+    render :index
   end
-  
+
 end

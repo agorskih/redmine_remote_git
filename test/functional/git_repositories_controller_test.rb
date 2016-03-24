@@ -3,6 +3,24 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_destroy
+    assert_difference 'GitRepository.all.count', -1 do
+      post :destroy, :id => GitRepository.all.first.id
+    end
+
+    assert_response :success
+    assert_template 'index'
+    assert_equal flash[:notice], 'Repository was successfully deleted'
+  end
+
+  def test_index_should_contain_delete_links
+    get :index
+
+    assert_equal(GitRepository.all.count, 2)
+    assert_select ('a[href=%s][data-confirm=Are you sure?][data-method=delete]' % [git_repository_path(GitRepository.all.first)]), 1
+    assert_select ('a[href=%s][data-confirm=Are you sure?][data-method=delete]' % [git_repository_path(GitRepository.all.last)]), 1
+  end
+
   def test_new_should_not_contain_errors
     get :new
 
@@ -63,7 +81,7 @@ class GitRepositoriesControllerTest < ActionController::TestCase
   def test_index_should_contain_add_button
   	get :index
 
-  	assert_select 'a', { :href => new_git_repository_path, :text => 'Add repository', :count => 1 }
+  	assert_select ('a[href=%s]' % [new_git_repository_path]), 'Add repository'
   end
 
   def test_index
@@ -107,7 +125,6 @@ class GitRepositoriesControllerTest < ActionController::TestCase
 
   	assert_select 'table' do
   		assert_select 'tr' do
-  			assert_select 'td', 4
   			assert_select 'td' do 
 					assert_select 'td:nth-child(1)', 'https://github.com/gordev/redmine_remote_git.git'
 					assert_select 'td:nth-child(2)', 'redmine_remote_git'
