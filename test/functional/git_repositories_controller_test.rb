@@ -3,6 +3,12 @@ require File.expand_path('../../test_helper', __FILE__)
 class GitRepositoriesControllerTest < ActionController::TestCase
   fixtures :git_repositories
 
+  def test_destroy
+    assert_difference 'GitRepository.all.count', -1 do
+      post :destroy, :id => GitRepository.all.first.id
+    end
+  end
+
   def test_index_should_contain_delete_links
     get :index
 
