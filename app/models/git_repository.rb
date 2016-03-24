@@ -1,10 +1,13 @@
 require 'uri'
+require 'fileutils'
 
 class GitRepository < ActiveRecord::Base
   unloadable
   validates :remote_origin_url, :local_clone_path, presence: true 
   validates :local_clone_path, uniqueness: true
   validate :remote_origin_url_must_be_HTTP_or_HTTPS_URL
+
+  before_destroy { |record| record.delete_clone }
 
   def remote_origin_url_must_be_HTTP_or_HTTPS_URL
   	uri = URI.parse(remote_origin_url)
@@ -24,6 +27,10 @@ class GitRepository < ActiveRecord::Base
     rescue Exception => e
       puts e.message
       puts e.backtrace.inspect
+  end
+
+  def delete_clone
+    FileUtils.rm_rf ENV['OPENSHIFT_DATA_DIR'] + '/' + self.local_clone_path
   end
 
 end
