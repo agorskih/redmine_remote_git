@@ -16,8 +16,8 @@ class GitRepository < ActiveRecord::Base
   end
 
   def clone
-    origin = @remote_origin_url
-    destination = ENV['OPENSHIFT_DATA_DIR'] + '/' + @local_clone_path
+    origin = self.remote_origin_url
+    destination = ENV['OPENSHIFT_DATA_DIR'] + '/' + self.local_clone_path
 
     Git.clone(origin, destination, :bare => true)
 
