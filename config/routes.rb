@@ -6,4 +6,4 @@
 
 resources :git_repositories, :only => [:index, :new, :create, :destroy]
 
-post 'git_repository/:id/clone', to: => 'git_repositories#clone', as: 'git_repository_clone'
+post 'git_repository/:id/clone', to: 'git_repositories#clone', as: 'git_repository_clone'
