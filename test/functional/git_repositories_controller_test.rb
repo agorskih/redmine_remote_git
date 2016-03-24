@@ -8,7 +8,8 @@ class GitRepositoriesControllerTest < ActionController::TestCase
       post :destroy, :id => GitRepository.all.first.id
     end
 
-    assert_redirected_to action: 'index'
+    assert_response :success
+    assert_template 'index'
   end
 
   def test_index_should_contain_delete_links

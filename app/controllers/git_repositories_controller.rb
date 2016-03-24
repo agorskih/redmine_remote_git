@@ -20,8 +20,10 @@ class GitRepositoriesController < ApplicationController
   end
 
   def destroy
-    @repository = GitRepository.find(params[:id])
-    @repository.destroy
+    GitRepository.find(params[:id]).destroy
+    @repositories = GitRepository.all
+
+    render :index
   end
 
 end
